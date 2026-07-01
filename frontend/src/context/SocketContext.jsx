@@ -11,7 +11,8 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     // Connect to backend socket server
-    const socketInstance = io('http://localhost:5000', {
+    const socketUrl = import.meta.env.PROD ? undefined : 'http://localhost:5000';
+    const socketInstance = io(socketUrl, {
       autoConnect: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
